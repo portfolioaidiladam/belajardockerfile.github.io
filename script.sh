@@ -32,3 +32,21 @@ docker container logs command
 docker build -t aidiladam/label label
 
 docker image inspect aidiladam/label
+
+# ADD Instruction
+docker build -t aidiladam/add add
+
+docker container create --name add aidiladam/add
+
+docker container start add
+
+docker container logs add
+
+# COPY Instruction
+docker build -t aidiladam/copy copy
+
+docker container create --name copy aidiladam/copy
+
+docker container start copy
+
+docker container logs copy
