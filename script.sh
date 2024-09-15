@@ -50,3 +50,77 @@ docker container create --name copy aidiladam/copy
 docker container start copy
 
 docker container logs copy
+
+# .dockerignore
+docker build -t aidiladam/ignore ignore
+
+docker container create --name ignore aidiladam/ignore
+
+docker container start ignore
+
+docker container logs ignore
+
+# EXPOSE Instruction
+docker build -t aidiladam/expose expose
+
+docker image inspect aidiladam/expose
+
+docker container create --name expose -p 8080:8080 aidiladam/expose
+
+docker container start expose
+
+docker container ls
+# kalau mau ngetest pake curl
+curl localhost:8080
+
+docker container stop expose
+
+
+# ENV Instruction
+docker build -t aidiladam/env env
+
+docker image inspect aidiladam/env
+# kalau ada error no such image setelah masukkan perintah diatas : aidiladam/env ,
+# check type envnya diatas ada yang ndak bener seperti evn
+# langkah selanjutknya docker image rm aidiladam/evn dulu baru build ulang
+
+#kalau mau mengubah portnya di containernya
+docker container create --name env --env APP_PORT=9090 -p 9090:9090 aidiladam/env
+docker container inspect env
+docker container ls -a
+
+
+docker container start env
+
+docker container ls
+# untuk memastikan
+docker container logs env
+# kalau mau ngetest pake curl
+curl localhost:9090
+docker container stop env
+
+
+# VOLUME Instruction
+docker build -t aidiladam/volume volume
+
+docker image inspect aidiladam/volume
+
+docker container create --name volume -p 8080:8080 aidiladam/volume
+
+docker container start volume
+
+docker container logs volume
+
+docker container inspect volume
+
+docker volume ls  #6fdf7b47a535657fc59299e9e86a29d664f5e15b372e67d6fa595a20ceebd236
+
+# WORKDIR Instruction
+docker build -t aidiladam/workdir workdir
+
+docker container create --name workdir -p 8080:8080 aidiladam/workdir
+
+docker container start workdir
+
+docker container exec -i -t workdir /bin/sh
+pwd

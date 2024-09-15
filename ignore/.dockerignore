@@ -1,0 +1,3 @@
+text/*.log
+# semua folder text yang ada didalam file temp akan di ignnore
+text/temp
