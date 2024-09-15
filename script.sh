@@ -121,6 +121,75 @@ docker build -t aidiladam/workdir workdir
 docker container create --name workdir -p 8080:8080 aidiladam/workdir
 
 docker container start workdir
+curl localhost:8080
 
 docker container exec -i -t workdir /bin/sh
 pwd
+
+# USER Instruction
+docker build -t aidiladam/user user
+
+docker container create --name user -p 8080:8080 aidiladam/user
+
+docker container start user
+curl localhost:8080
+
+docker container exec -i -t user /bin/sh
+whoami
+exit
+
+docker container stop user
+
+# ARG Instruction
+docker build -t aidiladam/arg arg --build-arg app=pzn
+
+docker container create --name arg -p 8080:8080 aidiladam/arg
+
+docker container start arg
+curl localhost:8080
+
+docker container exec -i -t arg /bin/sh
+ls -l
+
+docker container stop arg
+
+
+
+
+# HEALTHCHECK Instruction
+docker build -t aidiladam/health health
+
+docker container create --name health -p 8080:8080 aidiladam/health
+
+docker container start health
+
+docker container ls
+
+docker container inspect health
+docker container ls | grep unhealthy
+
+docker container stop health
+
+
+# ENTRYPOINT Instruction
+docker build -t aidiladam/entrypoint entrypoint
+
+docker image inspect aidiladam/entrypoint
+
+docker container create --name entrypoint -p 8080:8080 aidiladam/entrypoint
+
+docker container start entrypoint
+curl localhost:8080
+docker container stop entrypoint
+
+# Multi Stage Build
+docker build -t aidiladam/multi multi
+
+docker image ls
+
+docker container create --name multi -p 8080:8080 aidiladam/multi
+
+docker container start multi
+curl localhost:8080
+
+docker container stop multi
