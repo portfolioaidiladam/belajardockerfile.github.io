@@ -193,3 +193,15 @@ docker container start multi
 curl localhost:8080
 
 docker container stop multi
+
+# Docker Push
+docker login -u aidiladam
+docker push aidiladam/multi
+# setelah itu cek di https://hub.docker.com/u/aidiladam
+
+#Digital Ocean Container Registry
+docker tag aidiladam/multi registry.digitalocean.com/programmerzamannow/multi
+
+docker --config /Users/khannedy/.docker-digital-ocean/ push registry.digitalocean.com/programmerzamannow/multi
+
+docker --config /Users/khannedy/.docker-digital-ocean/ pull registry.digitalocean.com/programmerzamannow/multi
